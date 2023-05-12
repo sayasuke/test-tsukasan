@@ -1,0 +1,277 @@
+@use "global" as *;
+
+.header {
+  width: 100%;
+  height: 120px;
+  @media screen and (max-width: $tab) {
+    height: 80.4px;
+  }
+}
+
+.header__inner {
+  width: 100%;
+  padding-left: 16px;
+  display: flex;
+  justify-content: space-between;
+  @media screen and (max-width: $tab) {
+    padding-right: 16px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+}
+.header__logo {
+  display: block;
+  aspect-ratio: 75.4/65;
+  width: 75.4px;
+  height: 65px;
+  img {
+    width: 100%;
+  }
+}
+
+.entry-button.entry-button--header {
+  @media screen and (max-width: $tab) {
+    display: none;
+  }
+}
+
+.header__button {
+  display: block;
+  height: 120px;
+  width: vw(1366, 400);
+  max-width: 400px;
+  padding-top: 43px;
+  padding-bottom: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $white;
+  background-color: $pink;
+  margin-left: auto;
+  font-weight: $bold;
+  font-family: "Noto Sans JP";
+  font-size: rem(24);
+  letter-spacing: 0.1em;
+  position: relative;
+  top: 49%;
+  padding-right: 35px;
+  transform: rotate(-45deg), translateY(-50%);
+  @media screen and (max-width: $tab) {
+    display: none;
+  }
+}
+
+// ハンバーガー
+.hamburger {
+  cursor: pointer;
+  position: fixed;
+  z-index: 9999;
+  width: 58px;
+  height: 76px;
+  right: 11px;
+  top: 10px;
+  transition: transform 0.5s;
+  display: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+  @media screen and (max-width: $tab) {
+    display: block;
+  }
+}
+
+.hamburger__dot {
+  height: 23px;
+  position: absolute;
+  top: 18px;
+  left: -16px;
+  span {
+    border-radius: 50%;
+    display: block;
+    background-color: $pink;
+    width: 8px;
+    height: 8px;
+  }
+}
+.hamburger__dot span:first-of-type {
+  margin-bottom: 7px;
+}
+
+.hamburger__line span {
+  position: absolute;
+  width: 42px;
+  height: 4px;
+  display: block;
+  background-color: $pink;
+  transition: transform 0.5s;
+}
+
+.hamburger__line span:first-of-type {
+  top: 20px;
+}
+
+.hamburger__line span:last-of-type {
+  top: 35px;
+}
+
+.hamburger.is-active {
+  transform: rotate(90deg);
+  .hamburger__dot {
+    left: 10px;
+  }
+
+  .hamburger__dot span:first-of-type {
+    margin-bottom: 17.5px;
+  }
+
+  .hamburger__line span {
+    top: 32px;
+    left: 15px;
+  }
+  .hamburger__line span:first-of-type {
+    transform: rotate(110deg);
+  }
+
+  .hamburger__line span:last-of-type {
+    transform: rotate(70deg);
+  }
+}
+
+// ドロワーメニュー
+.drawer-menu {
+  opacity: 0;
+  visibility: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 5000;
+  width: 100%;
+  background-color: $pink;
+  height: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.js-drawer.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.drawer__inner {
+  width: 100%;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.drawer__content {
+  width: 100%;
+  padding-top: 37px;
+}
+
+.drawer__list {
+  li {
+    position: relative;
+    margin-top: 17px;
+    width: 100%;
+
+    &::after {
+      content: "";
+      background-color: $white;
+      display: block;
+      width: 100%;
+      height: 1px;
+      position: absolute;
+      opacity: 0;
+      bottom: -10px;
+      visibility: hidden;
+    }
+  }
+}
+
+.drawer__list li:first-child {
+  margin-top: 0;
+}
+
+.drawer__list li:last-child {
+  &::after {
+    display: none;
+  }
+}
+
+.drawer__link {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  overflow: hidden;
+
+  span {
+    opacity: 0;
+    transform: matrix(1, 0, 0, 1, 0, 100);
+    transition: 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .drawer__link-text {
+    padding-left: 8px;
+    display: block;
+    color: $white;
+    font-weight: $bold;
+    letter-spacing: 0.1em;
+    font-size: 24px;
+    line-height: 2;
+  }
+  .drawer__link-dot {
+    background-color: $white;
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+}
+
+.js-drawer__list.is-active {
+  li {
+    &::after {
+      animation: drawerListLine 0.5s forwards;
+      animation-delay: 1.2s;
+    }
+    .drawer__link {
+      opacity: 1;
+      span {
+        opacity: 1;
+        transform: matrix(1, 0, 0, 1, 0, 0);
+      }
+    }
+  }
+}
+
+@keyframes drawerListLine {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+    bottom: -10px;
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+    bottom: 0px;
+  }
+}
+
+.drawer__logo {
+  display: block;
+  width: 92px;
+  aspect-ratio: 92/76;
+  margin-top: 18.7px;
+  margin-left: auto;
+  margin-bottom: 50px;
+  img {
+    margin-left: auto;
+    width: 92px;
+    height: 76px;
+  }
+}
+
+body.is-fixed {
+  height: 100%;
+  overflow: hidden;
+}

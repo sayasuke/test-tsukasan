@@ -1,0 +1,25 @@
+@use "sass:math";
+
+@function strip-unit($number) {
+  @if type-of($number) == "number" and not unitless($number) {
+    @return math.div($number, ($number * 0 + 1));
+  }
+
+  @return $number;
+}
+
+@function vw($window_width, $size) {
+  @return math.div($size, $window_width) * 100vw;
+}
+
+@function rem($px) {
+  @return math.div($px, 16) * 1rem;
+}
+
+@function clampVw($min, $size, $max, $vp: 375) {
+  $min: $min * 1px;
+  $max: $max * 1px;
+  $num: 100 / $vp * 1vw;
+  $size_vw: $num * $size;
+  @return clamp($min, $size_vw, $max);
+}

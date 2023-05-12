@@ -1,0 +1,154 @@
+@use "global" as *;
+
+.entryButton {
+  position: relative;
+  margin: 0 auto;
+  cursor: pointer;
+  width: 412px;
+  @media screen and (max-width: $tab) {
+    width: vw(375, 249);
+  }
+}
+.entryButton-color {
+  width: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $pink;
+  border: 1px solid $gray2;
+  position: relative;
+  z-index: 3;
+  transition: transform 0.3s;
+  @media screen and (max-width: $tab) {
+    width: vw(375, 237);
+  }
+  &:hover {
+    transform: translate(-12px, 8px);
+    @media screen and (max-width: $tab) {
+      transform: none;
+    }
+  }
+  a {
+    padding-top: 42px;
+    padding-bottom: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    color: $white;
+    height: inherit;
+    font-size: 24px;
+    letter-spacing: 0.1em;
+    font-weight: $bold;
+    font-family: "Noto Sans JP";
+    @media screen and (max-width: $tab) {
+      font-size: vw(375, 16);
+      padding-top: vw(375, 23);
+      padding-bottom: vw(375, 22);
+    }
+  }
+}
+.entryButton-arrow {
+  display: block;
+  position: absolute;
+  width: vw(1366, 20);
+  min-width: 20px;
+  height: 2px;
+  transform: rotate(-45deg);
+  background-color: $white;
+  margin-left: 20px;
+  right: 30px;
+  @media screen and (max-width: $tab) {
+    right: 22px;
+    width: 4.4vw;
+    height: 1px;
+  }
+
+  &:after {
+    content: "";
+    border-right: 2px solid;
+    border-top: 2px solid;
+    border-color: $white;
+    width: 11px;
+    height: 11px;
+    position: absolute;
+    right: -1px;
+    top: -5px;
+    transform: rotate(45deg);
+    @media screen and (max-width: $tab) {
+      border-right: 1px solid;
+      border-top: 1px solid;
+      border-color: $white;
+      right: 1px;
+      width: 8px;
+      height: 8px;
+      top: -3px;
+    }
+  }
+}
+
+.entryButton-shadow {
+  color: $gray;
+  display: block;
+  position: absolute;
+  width: 400px;
+  height: 120px;
+  background-color: #f4f4f4;
+  border: 1px solid $gray2;
+  bottom: -8px;
+  left: -12px;
+  text-align: center;
+  @media screen and (max-width: $tab) {
+    width: vw(375, 237);
+    padding-top: vw(375, 23);
+    padding-bottom: vw(375, 22);
+    font-size: vw(375, 16);
+    height: auto;
+    bottom: -10px;
+    left: -10px;
+  }
+}
+
+.entryButton-color--reverse {
+  background-color: $white;
+  a {
+    color: $pink;
+    justify-content: center;
+    span {
+      background-color: $pink;
+      &::after {
+        border-color: $pink;
+      }
+    }
+  }
+}
+
+.form__button.entryButton {
+  .entryButton-color {
+    input {
+      padding-top: 42px;
+      padding-bottom: 43px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      color: $white;
+      height: inherit;
+      font-size: 24px;
+      letter-spacing: 0.1em;
+      font-weight: $bold;
+      font-family: "Noto Sans JP";
+      @media screen and (max-width: $tab) {
+        font-size: vw(375, 16);
+        padding-top: vw(375, 23);
+        padding-bottom: vw(375, 22);
+      }
+    }
+  }
+}
+
+.header__button {
+  .entryButton-arrow {
+    right: 47px;
+  }
+}
